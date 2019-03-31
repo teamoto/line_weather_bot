@@ -45,4 +45,4 @@ def handle_message(event):
 
 if __name__ == '__main__':
     port = int(os.getenv("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port, debug=True)

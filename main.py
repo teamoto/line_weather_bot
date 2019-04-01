@@ -46,6 +46,8 @@ def get_weather(base_url, option, location):
     r = requests.get(request_url)
     # get result in a json format
     json_res = r.json()
+    print(location)
+    print(search_date)
     print('result')
     print(json_res)
     # specify condition to set temp unit
@@ -84,7 +86,6 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     location = event.message.text
-    print(location)
     data = get_weather(base_url, option, location)
     reply_text = f"Location: {data['location']}\n"
     reply_text += f"Weather: {data['weather']}\n"

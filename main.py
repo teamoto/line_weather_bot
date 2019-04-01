@@ -46,6 +46,8 @@ def get_weather(base_url, option, location):
     r = requests.get(request_url)
     # get result in a json format
     json_res = r.json()
+    print('result')
+    print(json_res)
     # specify condition to set temp unit
     unit_type = '°F' if json_res['flags']['units'] == 'us' else '°C'
     # organize result
@@ -84,9 +86,9 @@ def handle_message(event):
     location = event.message.text
     data = get_weather(base_url, option, location)
     reply_text = f"Location: {data['location']}\n"
-    replay_text += f"Weather: {data['weather']}\n"
-    replay_text += f"Max Temp: {data['temp_max']}\n"
-    replay_text += f"Min Temp: {data['temp_min']}\n"
+    reply_text += f"Weather: {data['weather']}\n"
+    reply_text += f"Max Temp: {data['temp_max']}\n"
+    reply_text += f"Min Temp: {data['temp_min']}\n"
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=replay_text)

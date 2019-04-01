@@ -84,6 +84,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     location = event.message.text
+    print(location)
     data = get_weather(base_url, option, location)
     reply_text = f"Location: {data['location']}\n"
     reply_text += f"Weather: {data['weather']}\n"

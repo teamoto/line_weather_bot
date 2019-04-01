@@ -93,7 +93,7 @@ def handle_message(event):
     reply_text += f"Min Temp: {data['temp_min']}\n"
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=replay_text)
+        TextSendMessage(text=reply_text)
     )
 
 

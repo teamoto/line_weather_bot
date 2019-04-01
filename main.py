@@ -46,10 +46,6 @@ def get_weather(base_url, option, location):
     r = requests.get(request_url)
     # get result in a json format
     json_res = r.json()
-    print(location)
-    print(search_date)
-    print('result')
-    print(json_res)
     # specify condition to set temp unit
     unit_type = '°F' if json_res['flags']['units'] == 'us' else '°C'
     # organize result

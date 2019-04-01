@@ -83,10 +83,10 @@ def callback():
 def handle_message(event):
     location = event.message.text
     data = get_weather(base_url, option, location)
-    reply_text = f'Location: {data['location']}\n'
-    replay_text += f'Weather: {data['weather']}\n'
-    replay_text += f'Max Temp: {data['temp_max']}\n'
-    replay_text += f'Min Temp: {data['temp_min']}\n'
+    reply_text = f"Location: {data['location']}\n"
+    replay_text += f"Weather: {data['weather']}\n"
+    replay_text += f"Max Temp: {data['temp_max']}\n"
+    replay_text += f"Min Temp: {data['temp_min']}\n"
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=replay_text)

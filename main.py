@@ -33,14 +33,14 @@ option = "exclude=currently,minutely,hourly,alerts&amp;units=si"
 # define function to get weather info
 def get_weather(base_url, option, location):
     # get location info throuh geopy
-    geo_code = Nominatim().geocode(location, language='en-US')
+    geo_code = Nominatim().geocode(str(location.strip()), language='en-US')
     latitude = str(geo_code.latitude)
     longitude = str(geo_code.longitude)
     # set date info
     d = datetime.today().strftime('%Y-%m-%d')
     search_date = d + 'T00:00:00'
     # create a request url
-    request_url = base_url + '/' + latitude + longitude
+    request_url = base_url + '/' + latitude + ',' + longitude
     request_url += ',' + search_date + '?' + option
     # query a request to get wather informaiton
     r = requests.get(request_url)

@@ -31,18 +31,17 @@ option = "exclude=currently,minutely,hourly,alerts&amp;units=si"
 
 
 # define a function to return latitude and longitude
-def get_geo_location('location'):
+def get_geo_location(location):
     """
     Get location info throuh geopy.
-    This function returns latitude and longitude in a dictionary
+    This function returns latitude, longitude, address in a dictionary
     """
     geo_code = Nominatim().geocode(str(location.strip()), language='en-US')
     if geo_code is not None:
-        latitude = str(geo_code.latitude)
-        longitude = str(geo_code.longitude)
         return {
-            'latitude': latitude,
-            'longitude': longitude
+            'latitude': str(geo_code.latitude),
+            'longitude': str(geo_code.longitude),
+            'address': geo_code.address
         }
     return None
 
@@ -71,7 +70,7 @@ def get_weather(base_url, option, location):
         temp_min = str(json_res['daily']['data'][0]['apparentTemperatureMin'])
         # return a result as a dictionary
         return {
-            'location': geo_code.address,
+            'location': loc['address'],
             'weather': weather,
             'temp_max': (temp_max+unit_type),
             'temp_min': (temp_min+unit_type)

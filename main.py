@@ -1,5 +1,4 @@
 import os
-import sys
 import requests
 from geopy.geocoders import Nominatim
 from flask import Flask, request, abort
